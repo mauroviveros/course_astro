@@ -1,0 +1,12 @@
+{
+  "name": "course_astro",
+  "description": "Astro: El framework para sitios web orientados al contenido",
+  "author": {
+    "name": "Mauro Daniel Viveros",
+    "email": "maurod.viveros@gmail.com",
+    "url": "https://mauroviveros.com.ar/"
+  },
+  "repository": "github:mauroviveros/course_Astro",
+  "private": true,
+  "packageManager": "pnpm@10.17.1"
+}
