@@ -1,5 +1,6 @@
 ---
-
+const name = "Mauro Viveros";
+const title = "Home page";
 ---
 
 <html lang="en">
@@ -8,9 +9,18 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{title}</title>
 	</head>
 	<body>
 		<h1>Astro</h1>
+		<p>Welcome to Astro, {name}!</p>
+		<p>Momento actual: {new Date().toLocaleTimeString()}</p>
+		<footer></footer>
+
+		<script>
+			const currentYear = new Date().getFullYear();
+			const footer = document.querySelector("footer");
+			if(footer) footer.innerHTML = `&copy; Year: ${currentYear}`;
+		</script>
 	</body>
 </html>
