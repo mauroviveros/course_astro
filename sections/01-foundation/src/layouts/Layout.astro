@@ -15,7 +15,14 @@ const { title } = Astro.props;
 	<body>
 		<Navbar />
         <main>
+            <h1>{title}</h1>
             <slot />
         </main>
 	</body>
 </html>
+
+<style is:global>
+	h1 { 
+		text-decoration: underline;
+	}
+</style>

@@ -1,11 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 const name = "Mauro Viveros";
-const title = "Home page";
+const title = "Home";
 ---
 
 <Layout title={title}>
-	<h1>Astro</h1>
 	<p>Welcome to Astro, {name}!</p>
 	<p>Momento actual (estatico): {new Date().toLocaleTimeString()}</p>
 	<p>Momento actual (dinamico): <span id="dynamic-time"></span></p>
