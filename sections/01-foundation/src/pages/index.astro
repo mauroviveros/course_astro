@@ -1,34 +1,22 @@
 ---
-import Navbar from "../components/Navbar.astro";
-
+import Layout from "../layouts/Layout.astro";
 const name = "Mauro Viveros";
 const title = "Home page";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<Navbar />
+<Layout title={title}>
+	<h1>Astro</h1>
+	<p>Welcome to Astro, {name}!</p>
+	<p>Momento actual (estatico): {new Date().toLocaleTimeString()}</p>
+	<p>Momento actual (dinamico): <span id="dynamic-time"></span></p>
+	<footer></footer>
+</Layout>
 
-		<h1>Astro</h1>
-		<p>Welcome to Astro, {name}!</p>
-		<p>Momento actual (estatico): {new Date().toLocaleTimeString()}</p>
-		<p>Momento actual (dinamico): <span id="dynamic-time"></span></p>
-		<footer></footer>
+<script>
+	const currentYear = new Date().getFullYear();
+	const footer = document.querySelector("footer");
+	const dynamicTime = document.getElementById("dynamic-time");
 
-		<script>
-			const currentYear = new Date().getFullYear();
-			const footer = document.querySelector("footer");
-			const dynamicTime = document.getElementById("dynamic-time");
-
-			if(footer) footer.innerHTML = `&copy; Year: ${currentYear}`;
-			if(dynamicTime) dynamicTime.textContent = new Date().toLocaleTimeString();
-		</script>
-	</body>
-</html>
+	if(footer) footer.innerHTML = `&copy; Year: ${currentYear}`;
+	if(dynamicTime) dynamicTime.textContent = new Date().toLocaleTimeString();
+</script>
