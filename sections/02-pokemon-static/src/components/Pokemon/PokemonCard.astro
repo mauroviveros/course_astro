@@ -5,7 +5,7 @@ const { url } = Astro.props;
 const pokemon = (await (await fetch(url)).json()) as Pokemon;
 ---
 
-<div class="rounded border flex flex-col justify-center items-center">
+<a href={`/pokemon/${pokemon.name}`} class="rounded border flex flex-col justify-center items-center">
     <img src={pokemon.sprites.other?.['official-artwork'].front_default} alt={pokemon.name} />
     <span>{pokemon.name}</span>
-</div>
+</a>
