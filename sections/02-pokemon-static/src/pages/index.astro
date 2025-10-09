@@ -1,21 +1,20 @@
 ---
+import '../styles/global.css';
+import PokemonCard from '../components/Pokemon/PokemonCard.astro';
 import type { PokemonListResponse } from '../interfaces';
 import Layout from '../layouts/Layout.astro';
-import '../styles/global.css';
 const data = (await (await fetch('https://pokeapi.co/api/v2/pokemon')).json()) as PokemonListResponse;
 ---
 
 <Layout title="Pokémon Static | Home">
-	<h1>Listado de Pokémons</h1>
+	<h1>Listado de Pokémon</h1>
 	<hr>
 
-	<ul>
+	<section aria-label="Listado de Pokémon" class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-5 gap-4">
 		{
-			data.results.map(({ name, url }) => (
-				<li>
-					{name}
-				</li>
+			data.results.map(({ url }) => (
+				<PokemonCard url={url} />
 			))
 		}
-	</ul>
+	</section>
 </Layout>
