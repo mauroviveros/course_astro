@@ -1,16 +1,21 @@
 ---
 import PokemonCard from "../../components/Pokemon/PokemonCard.astro";
+import type { Pokemon, PokemonListResponse } from "../../interfaces";
 import Layout from "../../layouts/Layout.astro";
+import { fetchPokemonList } from "../../utils/pokemon";
 
-export const getStaticPaths = (() => {
-    return [
-        { params: { name: "bulbasaur" }, props: { url: "https://pokeapi.co/api/v2/pokemon/1" } },
-        { params: { name: "ivysaur" }, props: { url: "https://pokeapi.co/api/v2/pokemon/2" } }
-    ];
-})
+export const getStaticPaths = (async () => {
+    const { results } = await fetchPokemonList(151);
+    return results.map(pokemon => {
+        return {
+            params: { name: pokemon.name },
+            props: { pokemon: pokemon.data }
+        }
+    })
+});
 
 const { name } = Astro.params;
-const { url } = Astro.props;
+const { pokemon } = Astro.props;
 ---
 
 <Layout title="Pokémon Static | Pokémon Detail">
@@ -18,7 +23,7 @@ const { url } = Astro.props;
     <h1 class="text-5xl">{name}</h1>
     <hr>
 
-    <PokemonCard url={url} />
+    <PokemonCard data={pokemon} />;
 
     <p>Desde aquí podremos ver el detalle de cada Pokémon</p>
 </Layout>
