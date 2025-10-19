@@ -1,0 +1,41 @@
+---
+import type { GetStaticPaths } from "astro";
+import PokemonCard from "../../components/Pokemon/PokemonCard.astro";
+import Layout from "../../layouts/Layout.astro";
+import { fetchPokemonList } from "../../utils/pokemon";
+import type { Pokemon } from "../../interfaces";
+
+export const getStaticPaths = (async ({ paginate }) => {
+    const { results } = await fetchPokemonList(151);
+    return paginate(results, { pageSize: 20 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const results = page.data;
+---
+
+<Layout title="Pokémon Static | Home">
+	<h1>Listado de Pokémon</h1>
+	<hr><br>
+
+	<section aria-label="Listado de Pokémon" class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-5 gap-4">
+		{
+			results.map(({ data }) => (
+				<PokemonCard data={data} class="border [&>img]:size-24"/>
+			))
+		}
+	</section>
+
+    <section class="flex mt-4 gap-2 items-center justify-between">
+        <article class="flex items-center gap-2">
+            <a href={page.url.prev}>
+                <button class="btn" disabled={!page.url.prev}>Anterior</button>
+            </a>
+            <a href={page.url.next}>
+                <button class="btn" disabled={!page.url.next}>Siguiente</button>
+            </a>
+        </article>
+
+        <span> página {page.currentPage}</span>
+    </section>
+</Layout>
