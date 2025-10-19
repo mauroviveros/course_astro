@@ -1,11 +1,18 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
 import type { Pokemon } from '../../interfaces';
 
-interface Props { data: Pokemon; };
-const { data:pokemon } = Astro.props;
+interface Props extends HTMLAttributes<'a'>{ data: Pokemon; };
+const { data:pokemon, class: extraClasses } = Astro.props;
 ---
 
-<a href={`/pokemon/${pokemon.name}`} class="rounded border flex flex-col justify-center items-center">
+<a
+    href={`/pokemon/${pokemon.name}`}
+    class:list={[
+        "rounded flex flex-col justify-center items-center",
+        extraClasses
+    ]}
+>
     <img src={pokemon.sprites.other?.['official-artwork'].front_default} alt={pokemon.name} />
-    <span>{pokemon.name}</span>
+    <span class="capitalize">#{pokemon.id} {pokemon.name}</span>
 </a>

@@ -21,9 +21,10 @@ const { pokemon } = Astro.props;
 <Layout title="Pokémon Static | Pokémon Detail">
     <a href="/" class="hover:underline text-blue-500">Regresar</a>
     <h1 class="text-5xl">{name}</h1>
-    <hr>
+    <hr><br>
 
-    <PokemonCard data={pokemon} />;
+    <PokemonCard data={pokemon} class="[&>img]:size-72 [&>span]:text-3xl"/>
 
-    <p>Desde aquí podremos ver el detalle de cada Pokémon</p>
+    <br>
+    <audio src={pokemon.cries.latest} controls class="mx-auto"></audio>
 </Layout>

@@ -8,12 +8,12 @@ const { results } = await fetchPokemonList();
 
 <Layout title="Pokémon Static | Home">
 	<h1>Listado de Pokémon</h1>
-	<hr>
+	<hr><br>
 
 	<section aria-label="Listado de Pokémon" class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-5 gap-4">
 		{
 			results.map(({ data }) => (
-				<PokemonCard data={data} />
+				<PokemonCard data={data} class="border [&>img]:size-24"/>
 			))
 		}
 	</section>
