@@ -13,6 +13,10 @@ const { data:pokemon, class: extraClasses } = Astro.props;
         extraClasses
     ]}
 >
-    <img src={pokemon.sprites.other?.['official-artwork'].front_default} alt={pokemon.name} />
+    <img
+        transition:name={`pokemon-${pokemon.id}`}
+        src={pokemon.sprites.other?.['official-artwork'].front_default}
+        alt={pokemon.name}
+    />
     <span class="capitalize">#{pokemon.id} {pokemon.name}</span>
 </a>
