@@ -1,6 +1,4 @@
 ---
-import PokemonCard from "../../components/Pokemon/PokemonCard.astro";
-import Layout from "../../layouts/Layout.astro";
 import { fetchPokemonList } from "../../utils/pokemon";
 
 export const getStaticPaths = (async () => {
@@ -13,17 +11,6 @@ export const getStaticPaths = (async () => {
     })
 });
 
-const { name } = Astro.params;
 const { pokemon } = Astro.props;
+return Astro.rewrite('/pokemon/' + pokemon.id);
 ---
-
-<Layout title="Pokémon Static | Pokémon Detail">
-    <a href="/" class="hover:underline text-blue-500">Regresar</a>
-    <h1 class="text-5xl">{name}</h1>
-    <hr><br>
-
-    <PokemonCard data={pokemon} class="[&>img]:size-72 [&>span]:text-3xl"/>
-
-    <br>
-    <audio src={pokemon.cries.latest} controls class="mx-auto"></audio>
-</Layout>

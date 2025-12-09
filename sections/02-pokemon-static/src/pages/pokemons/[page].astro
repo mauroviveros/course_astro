@@ -9,7 +9,7 @@ export const getStaticPaths = (async ({ paginate }) => {
     return paginate(results, { pageSize: 20 });
 }) satisfies GetStaticPaths;
 const { page } = Astro.props;
-if (!page) return Astro.redirect('/pokemon/1');
+if (!page) return Astro.redirect('/pokemons/1');
 
 const results = page.data;
 ---
