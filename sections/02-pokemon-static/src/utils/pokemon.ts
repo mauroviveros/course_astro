@@ -1,7 +1,11 @@
 import type { Pokemon, PokemonListResponse } from "../interfaces";
 
+const cache = new Map<string, PokemonListResponse>();
 
 export const fetchPokemonList = async (limit?: number) => {
+    const cacheKey = limit ? `limit-${limit}` : 'all';
+    if (cache.has(cacheKey)) return cache.get(cacheKey)!;
+
     const url = new URL('https://pokeapi.co/api/v2/pokemon');
     if (limit) url.searchParams.set('limit', limit.toString());
 
@@ -13,5 +17,6 @@ export const fetchPokemonList = async (limit?: number) => {
         return pokemon;
     }));
 
+    cache.set(cacheKey, data);
     return data;
 };
