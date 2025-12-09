@@ -1,4 +1,4 @@
-import type { Pokemon, PokemonListResponse } from "../interfaces";
+import type { Pokemon, PokemonListResponse } from "@interfaces";
 
 const cache = new Map<string, PokemonListResponse>();
 

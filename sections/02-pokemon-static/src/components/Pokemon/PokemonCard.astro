@@ -1,6 +1,6 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
-import type { Pokemon } from '../../interfaces';
+import type { Pokemon } from '@interfaces';
 
 interface Props extends HTMLAttributes<'a'>{ data: Pokemon; };
 const { data:pokemon, class: extraClasses } = Astro.props;

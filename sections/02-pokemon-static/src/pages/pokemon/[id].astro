@@ -1,7 +1,7 @@
 ---
-import PokemonCard from "../../components/Pokemon/PokemonCard.astro";
-import Layout from "../../layouts/Layout.astro";
-import { fetchPokemonList } from "../../utils/pokemon";
+import PokemonCard from "@components/Pokemon/PokemonCard.astro";
+import Layout from "@layouts/Layout.astro";
+import { fetchPokemonList } from "@utils/pokemon";
 
 export const getStaticPaths = (async () => {
     const { results } = await fetchPokemonList(151);
