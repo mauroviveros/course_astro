@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import { SITE_INFO } from '@consts/site-info';
+import Navbar from '@components/shared/navbar.astro';
 
 
 interface Props {
@@ -13,7 +14,7 @@ interface Props {
 const { title = SITE_INFO.title, description = SITE_INFO.description, image, favicon } = Astro.props;
 ---
 
-<html lang="es">
+<html lang="es" data-theme="dark">
 	<head>
 		<meta charset="utf-8" />
 		
@@ -36,8 +37,11 @@ const { title = SITE_INFO.title, description = SITE_INFO.description, image, fav
 		<meta property="og:image" content={image} />
 
 	</head>
-	<body class="bg-slate-500 text-slate-100 m-auto max-w-3xl">
-        <main class="mt-10">
+	<body class="bg-slate-500 text-slate-100 scheme-dark">
+		<header>
+			<Navbar />
+		</header>
+        <main class="mt-10 m-auto max-w-3xl">
             <slot />
         </main>
 	</body>

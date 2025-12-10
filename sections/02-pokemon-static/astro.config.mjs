@@ -5,7 +5,6 @@ import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
     redirects: {
-        "/": "/pokemons/1",
         "/pokemons": "/pokemons/1",
     },
     vite: {

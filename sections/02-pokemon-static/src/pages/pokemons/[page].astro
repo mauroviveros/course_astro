@@ -1,6 +1,6 @@
 ---
 import type { GetStaticPaths } from "astro";
-import PokemonCard from "@components/Pokemon/PokemonCard.astro";
+import PokemonCard from "@components/pokemon/PokemonCard.astro";
 import Layout from "@layouts/Layout.astro";
 import { fetchPokemonList } from "@utils/pokemon";
 
@@ -15,7 +15,7 @@ const results = page.data;
 ---
 
 <Layout title="Pokémon Static | Home">
-	<h1>Listado de Pokémon</h1>
+	<h1>Paginado de Pokémon</h1>
 	<hr>
 
 	<section aria-label="Listado de Pokémon" class="grid grid-cols-1 p-4 sm:grid-cols-4 md:grid-cols-5 gap-4">

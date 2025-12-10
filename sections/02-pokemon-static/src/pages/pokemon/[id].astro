@@ -1,5 +1,5 @@
 ---
-import PokemonCard from "@components/Pokemon/PokemonCard.astro";
+import PokemonCard from "@components/pokemon/PokemonCard.astro";
 import Layout from "@layouts/Layout.astro";
 import { fetchPokemonList } from "@utils/pokemon";
 
@@ -17,8 +17,7 @@ const { pokemon } = Astro.props;
 ---
 
 <Layout title={`#${pokemon.id} ${pokemon.name} | Pokémon Static`} description={`Detalles del Pokémon ${pokemon.name}`} image={pokemon.cries.latest} favicon={pokemon.sprites.other?.['official-artwork'].front_default}>
-    <a href="/" class="hover:underline text-blue-500">Regresar</a>
-    <h1 class="text-5xl">&#35;{pokemon.id} {pokemon.name}</h1>
+    <h1 class="text-5xl">{pokemon.name}</h1>
     <hr><br>
 
     <PokemonCard data={pokemon} class="[&>img]:size-72 [&>span]:text-3xl"/>

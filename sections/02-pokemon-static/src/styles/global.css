@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 .btn{
     @apply bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 cursor-pointer;
