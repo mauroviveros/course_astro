@@ -20,6 +20,8 @@ const { title = SITE_INFO.title, description = SITE_INFO.description, image, fav
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<ClientRouter />
+		<!-- Zero-Javascript View-Transitions -->
+		<!-- <style>@view-transition { navigation: auto; }</style> -->
 		<title>{title}</title>
 
         {favicon ? <link rel="icon" type="image/png" href={favicon} /> : <link rel="icon" type="image/svg+xml" href="/favicon.svg" />}
