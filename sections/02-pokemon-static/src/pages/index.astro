@@ -1,5 +1,6 @@
 ---
 import PokemonCard from "@components/pokemon/PokemonCard.astro";
+import Title from "@components/shared/Title.astro";
 import Layout from "@layouts/Layout.astro";
 import { fetchPokemonList } from "@utils/pokemon";
 
@@ -7,8 +8,7 @@ const { results } = await fetchPokemonList(151);
 ---
 
 <Layout title="Pokémon Static | Home">
-	<h1>Listado de Pokémon</h1>
-	<hr>
+	<Title>Listado de Pokémon</Title>
 
 	<section aria-label="Listado de Pokémon" class="grid grid-cols-1 p-4 sm:grid-cols-4 md:grid-cols-5 gap-4">
 		{
