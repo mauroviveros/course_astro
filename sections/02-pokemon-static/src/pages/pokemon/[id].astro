@@ -3,6 +3,7 @@ import PokemonCard from "@components/pokemon/PokemonCard.astro";
 import Title from "@components/shared/Title.astro";
 import Layout from "@layouts/Layout.astro";
 import { fetchPokemonList } from "@utils/pokemon";
+import { Icon } from 'astro-icon/components'
 
 export const getStaticPaths = (async () => {
     const { results } = await fetchPokemonList(151);
@@ -24,7 +25,13 @@ const { pokemon } = Astro.props;
     favicon={pokemon.sprites.other?.['official-artwork'].front_default}
 >
     <section class="flex flex-col px-4 pb-4 gap-2 items-center justify-between">
-        <Title>{pokemon.name}</Title>
+        <Title>
+            {pokemon.name}
+            <button class="ml-2 cursor-pointer">
+                <!-- <Icon name="ph:heart-fill" size="2.5rem" class="text-red-500"/> -->
+                <Icon name="ph:heart-duotone" size="2.5rem" class="text-red-500 [&_path:first-child]:opacity-0 hover:[&_path:first-child]:opacity-20"/>
+            </button>
+        </Title>
 
         <PokemonCard data={pokemon} class="[&>img]:size-72 [&>span]:text-3xl"/>
 
