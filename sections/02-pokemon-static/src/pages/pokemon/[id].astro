@@ -27,7 +27,7 @@ const { pokemon } = Astro.props;
     <section class="flex flex-col px-4 pb-4 gap-2 items-center justify-between">
         <Title>
             {pokemon.name}
-            <button class="ml-2 cursor-pointer">
+            <button id="btn-favorite" class="ml-2 cursor-pointer" data-name={pokemon.name} data-id={pokemon.id}>
                 <!-- <Icon name="ph:heart-fill" size="2.5rem" class="text-red-500"/> -->
                 <Icon name="ph:heart-duotone" size="2.5rem" class="text-red-500 [&_path:first-child]:opacity-0 hover:[&_path:first-child]:opacity-20"/>
             </button>
@@ -40,3 +40,15 @@ const { pokemon } = Astro.props;
     </section>
 
 </Layout>
+
+<script>
+    
+    document.addEventListener('astro:page-load', () => {
+        const btn = document.querySelector('button#btn-favorite');
+        btn?.addEventListener('click', () => {
+            const name = btn.getAttribute('data-name');
+            const id = btn.getAttribute('data-id');
+            console.log(name, id);
+        });
+    });
+</script>
