@@ -42,13 +42,18 @@ const { pokemon } = Astro.props;
 </Layout>
 
 <script>
-    
+    // document.addEventListener('astro:after-preparation', () => console.log('After preparation'));
+    // document.addEventListener('astro:after-swap', () => console.log('After swap'));
+    // document.addEventListener('astro:before-preparation', () => console.log('Before preparation'));
+    // document.addEventListener('astro:before-swap', () => console.log('Before swap'));
+    // document.addEventListener('astro:page-load', () => console.log('Page loaded'));
+
     document.addEventListener('astro:page-load', () => {
-        const btn = document.querySelector('button#btn-favorite');
+        const btn: HTMLButtonElement | null = document.querySelector('button#btn-favorite');
+
         btn?.addEventListener('click', () => {
-            const name = btn.getAttribute('data-name');
-            const id = btn.getAttribute('data-id');
-            console.log(name, id);
+            const { name, id } = btn.dataset;
+            console.log({ name, id});
         });
     });
 </script>
