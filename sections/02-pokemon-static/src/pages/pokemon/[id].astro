@@ -28,8 +28,8 @@ const { pokemon } = Astro.props;
         <Title>
             {pokemon.name}
             <button id="btn-favorite" class="ml-2 cursor-pointer" data-name={pokemon.name} data-id={pokemon.id}>
-                <!-- <Icon name="ph:heart-fill" size="2.5rem" class="text-red-500"/> -->
-                <Icon name="ph:heart-duotone" size="2.5rem" class="text-red-500 [&_path:first-child]:opacity-0 hover:[&_path:first-child]:opacity-20"/>
+                <Icon data-heart-visible name="ph:heart-fill" size="2.5rem" class="text-red-500 hidden"/>
+                <Icon data-heart-visible name="ph:heart-duotone" size="2.5rem" class="text-red-500 [&_path:first-child]:opacity-0 hover:[&_path:first-child]:opacity-20"/>
             </button>
         </Title>
 
@@ -48,12 +48,40 @@ const { pokemon } = Astro.props;
     // document.addEventListener('astro:before-swap', () => console.log('Before swap'));
     // document.addEventListener('astro:page-load', () => console.log('Page loaded'));
 
-    document.addEventListener('astro:page-load', () => {
-        const btn: HTMLButtonElement | null = document.querySelector('button#btn-favorite');
 
-        btn?.addEventListener('click', () => {
-            const { name, id } = btn.dataset;
-            console.log({ name, id});
+
+    document.addEventListener('astro:page-load', () => {
+        const btn = document.querySelector('button#btn-favorite') as HTMLButtonElement;
+        const heartFillIcon = btn.querySelectorAll('[data-heart-visible]') as NodeListOf<HTMLElement>;
+        const id = Number(btn.dataset.id);
+        let favorites : Number[] = [];
+        let isFavorite = false;
+
+        const toggleIcons = () => {
+            heartFillIcon.forEach(icon => icon.classList.toggle('hidden'));
+        };
+
+        const getFavorites = () => {
+            favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            isFavorite = favorites.includes(id);
+        }
+        
+        const updateFavorites = () => {
+            if (!isFavorite) favorites.push(id);
+            else favorites.splice(favorites.indexOf(id), 1);
+
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            getFavorites();
+
+        }
+
+        getFavorites();
+        if (isFavorite) toggleIcons();
+
+        btn.addEventListener('click', () => {
+            isFavorite = favorites.includes(id);
+            updateFavorites();
+            toggleIcons();
         });
     });
 </script>
