@@ -7,5 +7,12 @@ import Layout from "@layouts/Layout.astro";
 <Layout title="Pokémon Static | Home">
     <Title>Islas</Title>
     <div style="height: 2000px; background: lightgray; opacity: 0.5;"></div>
-    <Counter client:visible />
+    <Counter
+        transition:persist="counter"
+        transition:persist-props
+        initialValue={20}
+        client:visible
+    >
+        <Title>Counter Astro</Title>
+    </Counter>
 </Layout>
