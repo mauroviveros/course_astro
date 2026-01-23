@@ -1,8 +1,11 @@
 ---
+import { Counter } from "@components/Counter";
 import Title from "@components/shared/Title.astro";
 import Layout from "@layouts/Layout.astro";
 ---
 
 <Layout title="Pokémon Static | Home">
     <Title>Pokémons Favoritos</Title>
+
+    <Counter client:load />
 </Layout>

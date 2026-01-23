@@ -10,6 +10,8 @@
       "@utils/*": ["./src/utils/*"],
       "@interfaces": ["./src/interfaces/index"],
       "@consts/*": ["./src/consts/*"]
-    }
+    },
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js"
   }
 }
