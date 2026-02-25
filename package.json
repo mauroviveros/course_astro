@@ -6,7 +6,7 @@
     "email": "maurod.viveros@gmail.com",
     "url": "https://mauroviveros.com.ar/"
   },
-  "repository": "github:mauroviveros/course_Astro",
+  "repository": "github:mauroviveros/course_astro",
   "private": true,
   "packageManager": "pnpm@10.25.0"
 }
