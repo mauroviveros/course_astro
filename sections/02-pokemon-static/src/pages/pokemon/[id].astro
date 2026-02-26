@@ -41,10 +41,10 @@ const { pokemon } = Astro.props;
 
 </Layout>
 
-<script>
+<script >
     document.addEventListener('astro:page-load', () => {
         const btn = document.querySelector('button#btn-favorite') as HTMLButtonElement;
-        const heartFillIcon = btn.querySelectorAll('[data-heart-visible]') as NodeListOf<HTMLElement>;
+        const heartFillIcon = btn?.querySelectorAll('[data-heart-visible]') as NodeListOf<HTMLElement>;
         const id = Number(btn.dataset.id);
         let favorites : Number[] = [];
         let isFavorite = false;
