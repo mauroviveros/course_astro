@@ -30,6 +30,9 @@ export const PokemonCardFavorites: Component<Props> = ({ id }) => {
         <img
           src={resource()?.sprites.other?.['official-artwork'].front_default}
           alt={resource()?.name}
+          style={
+            `view-transition-name: pokemon-${resource()?.id}`
+          }
         />
         <span class="capitalize">#{resource()?.id} {resource()?.name}</span>
       </button>
