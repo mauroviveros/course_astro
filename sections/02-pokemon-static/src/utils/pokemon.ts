@@ -20,3 +20,15 @@ export const fetchPokemonList = async (limit?: number) => {
     cache.set(cacheKey, data);
     return data;
 };
+
+export const fetchPokemon  = async (id: string) => {
+    // const cacheKey = `pokemon-${id}`;
+    // if (cache.has(cacheKey)) return cache.get(cacheKey) as Pokemon;
+
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    const data = await response.json() as Pokemon;
+
+    // cache.set(cacheKey, data);
+    console.log(data);
+    return data;
+}
