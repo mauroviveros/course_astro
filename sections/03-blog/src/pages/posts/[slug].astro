@@ -12,9 +12,35 @@ export async function getStaticPaths() {
   });
 }
 
-const { title } = Astro.props.post.data;
+const { data, render } = Astro.props.post;
+const { title, author } = data;
+const { Content, headings } = await render();
+console.log(headings);
 ---
 
 <BlogLayout title={title}>
-    <h1>Hola mundo</h1>
+    <h1 class="text-xs! text-gray-500 mb-0">{title}</h1>
+    <h4 class="text-md! text-gray-400 mb-0">{author}</h4>
+
+    <!-- Tabla de contenidos -->
+     <h3>Tabla de contenidos</h3>
+     <ol>
+        {
+        headings
+            .filter(({ depth }) => !(depth > 2))
+            .map(({ slug, text}, index) => (
+                <li>
+                    <a href={`#${slug}`}>
+                        {index+1}. {text}
+                    </a>
+                </li>
+            ))
+        }
+     </ol>
+
+    <Content />
+
+    <div class="my-20">
+        <a href="#btn-back">Ir arriba</a>
+    </div>
 </BlogLayout>
