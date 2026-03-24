@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Post from "../components/Post.astro";
 import { SITE_CONFIG } from "../config/site";
 
-const matches = import.meta.glob('./posts/*.{md,mdx}', { eager: true });
+const matches = import.meta.glob('./posts-old/*.{md,mdx}', { eager: true });
 const posts = Object.values(matches) as any[];
 ---
 
