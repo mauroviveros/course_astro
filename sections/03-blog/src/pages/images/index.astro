@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+
+import post05 from "../../assets/images/post-05.png";
+---
+
+<Layout>
+    <h1 class="text-5xl! text-white">Imágenes</h1>
+
+    <img
+        loading="eager"
+        src="/assets/images/post-05.png"
+        width="250"
+        height="250"
+    />
+
+    <Image
+        src={post05}
+        width="250"
+        height="250"
+        alt="Imagen del post"
+    />
+
+    <div style="width: 250px; height: 3000px; background-color: #333; margin: 20px 0;"></div>
+
+    <img
+        loading="lazy"
+        src="/assets/images/post-04.png"
+        width="250"
+        height="250"
+    />
+
+</Layout>
