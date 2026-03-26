@@ -2,6 +2,8 @@
 import { getCollection } from "astro:content";
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
+import { Formatter } from "../../utils";
 
 export async function getStaticPaths() {
   return (await getCollection('blog')).map((post) => {
@@ -13,13 +15,30 @@ export async function getStaticPaths() {
 }
 
 const { data, render, slug } = Astro.props.post;
-const { title, author, image, } = data;
+const { title, author: authorReference, image, date } = data;
 const { Content, headings } = await render();
+const authorEntry = await getEntry(authorReference.collection, authorReference.id);
+if(!authorEntry) throw new Error(`Author with id ${authorReference.id} not found`);
+const author = authorEntry.data;
 ---
 
 <BlogLayout title={title}>
     <h1 class="text-xs! text-gray-500 mb-0">{title}</h1>
-    <h4 class="text-md! text-gray-400 mb-0">{author}</h4>
+    <div class="text-md text-gray-400 mb-0 flex mt-2">
+        <Image
+            src={author.avatar}
+            alt={author.name}
+            class="rounded-full"
+            width={50}
+            height={50}
+        />
+
+        <div class="flex flex-col ml-5 ">
+            <a href="#">{author.name}</a>
+            <span class="text-xs text-gray-300">{Formatter.formatDate(date)}</span>
+        </div>
+    </div>
+    <!-- <h4 class="text-md! text-gray-400 mb-0">{author.name}</h4> -->
 
     <!-- Tabla de contenidos -->
      <h3>Tabla de contenidos</h3>
