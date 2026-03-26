@@ -1,11 +1,15 @@
-import { glob } from "astro/loaders";
 import { defineCollection, reference, z } from "astro:content";
 
 const author = defineCollection({
     type: "data",
     schema: ({image}) => z.object({
         name: z.string(),
-        avatar: image()
+        avatar: image(),
+        twitter: z.string().optional(),
+        linkedIn: z.string().url(),
+        github: z.string().url(),
+        bio: z.string(),
+        subtitle: z.string(),
     })
 })
 
