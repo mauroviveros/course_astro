@@ -17,8 +17,10 @@ const blog = defineCollection({
         description: z.string(),
         image: image(),
         author: reference('author'),
-        tags: z.array(z.string()) // relacion
-    })
+        tags: z.array(z.string()), // relacion
+        published: z.boolean().default(true)
+    }),
+    
 });
 
 export const collections = { blog, author };

@@ -13,9 +13,10 @@ export async function getStaticPaths() {
 }
 
 const { data, render, slug } = Astro.props.post;
+if(!data.published) return Astro.rewrite('/404');
 const { title, author: authorReference, image, date } = data;
 const { Content, headings } = await render();
-const authorEntry = await getEntry(authorReference.collection, authorReference.id);
+const authorEntry = await getEntry('author', authorReference.id);
 if(!authorEntry) throw new Error(`Author with id ${authorReference.id} not found`);
 const author = authorEntry.data;
 ---

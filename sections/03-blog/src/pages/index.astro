@@ -4,7 +4,9 @@ import Post from "../components/Post.astro";
 import { SITE_CONFIG } from "../config/site";
 import { getCollection } from "astro:content";
 
-const posts = await getCollection("blog");
+const posts = await getCollection("blog", ({ data }) => {
+	return data.published;
+});
 ---
 
 <Layout title="Mauro's Blog">
