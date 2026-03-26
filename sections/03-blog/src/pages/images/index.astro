@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 
 import post05 from "../../assets/images/post-05.png";
+import Picture from "astro/components/Picture.astro";
 ---
 
 <Layout>
@@ -22,6 +23,66 @@ import post05 from "../../assets/images/post-05.png";
         alt="Imagen del post"
     />
 
+    <Image
+        src={post05}
+            style={{
+                width: "250px",
+                height: "250px",
+            }}
+        width="500"
+        height="500"
+        alt="Imagen del post"
+    />
+
+    <h2>Quality</h2>
+
+     <Image
+        src={post05}
+        quality="low"
+        width="250"
+        height="250"
+        alt="Imagen del post"
+    />
+
+     <Image
+        src={post05}
+        quality="high"
+        width="250"
+        height="250"
+        alt="Imagen del post"
+    />
+
+    <h2>Format</h2>
+
+    <Image
+        src={post05}
+        format="avif"
+        width="250"
+        height="250"
+        alt="Imagen del post"
+    />
+
+    <Image
+        src={post05}
+        format="jpeg"
+        width="250"
+        height="250"
+        alt="Imagen del post"
+    />
+
+    <h2>Picture</h2>
+    <!-- formats={['webp', 'avif', 'jpeg']} -->
+    <!-- widths={[240, 540, 720, post05.width]} -->
+    <!-- sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${post05.width}px`} -->
+    <!-- width={post05.width / 2} -->
+    <!-- densities={[1.5, 2]} -->
+    <Picture
+        src={post05}
+        width="250"
+        height="250"
+        alt="Imagen del post"
+    />
+    
     <div style="width: 250px; height: 3000px; background-color: #333; margin: 20px 0;"></div>
 
     <img
