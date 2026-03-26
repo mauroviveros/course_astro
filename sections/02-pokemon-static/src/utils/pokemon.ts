@@ -29,6 +29,5 @@ export const fetchPokemon  = async (id: string) => {
     const data = await response.json() as Pokemon;
 
     // cache.set(cacheKey, data);
-    console.log(data);
     return data;
 }
