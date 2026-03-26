@@ -1,10 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import BlogLayout from "../../layouts/BlogLayout.astro";
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
   return (await getCollection('blog')).map((post) => {
-    console.log(post.slug);
     return {
         params: { slug: post.slug },
         props: { post },
@@ -12,10 +12,9 @@ export async function getStaticPaths() {
   });
 }
 
-const { data, render } = Astro.props.post;
-const { title, author } = data;
+const { data, render, slug } = Astro.props.post;
+const { title, author, image, } = data;
 const { Content, headings } = await render();
-console.log(headings);
 ---
 
 <BlogLayout title={title}>
@@ -37,6 +36,16 @@ console.log(headings);
             ))
         }
      </ol>
+
+    <Image
+        class="rounded-md w-full h-62.5 object-cover my-5"
+        src={image}
+        alt={title}
+        width={600}
+        height={200}
+        quality="high"
+        transition:name={`${slug}-image`}
+    />
 
     <Content />
 
